@@ -1,0 +1,67 @@
+## Models and Capabilities
+
+QWEN 3.5 got released, which is open and multi-modal (github).
+
+[https://github.com/QwenLM/Qwen3.5](https://github.com/QwenLM/Qwen3.5)
+
+Gemini 3.1 was released reaching 77% on ARC-AGI 2 (blog).
+
+[https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/)
+
+Claude Sonnet 4.6 was released being better than 4.5 Opus on many benchmarks. (blog)
+
+[https://www.anthropic.com/news/claude-sonnet-4-6](https://www.anthropic.com/news/claude-sonnet-4-6)
+
+Grok 4.20 was released which is apparently a combination of 16 agents working on a prompt and then synthesizing an answer.
+
+[https://www.msn.com/en-in/money/news/elon-musk-says-grok-4-20-public-beta-is-now-available-capabilities-of-ai-chatbot-offered-by-xai/ar-AA1WzsVv](https://www.msn.com/en-in/money/news/elon-musk-says-grok-4-20-public-beta-is-now-available-capabilities-of-ai-chatbot-offered-by-xai/ar-AA1WzsVv)
+
+Multiple people report that the open Chinese models underperform in real-world tasks compared to frontier models eventhough they look good on benchmarks (twitter).
+
+[https://x.com/emollick/status/2024190674166239420](https://x.com/emollick/status/2024190674166239420)
+
+Richard Sutton points out the lack of continual learning in LLMs and this short video shows an example of a robot that cannot adjust to a slippery surface and would require new training data. (twitter)
+
+[https://x.com/robot_in_space2/status/2014096247309627541](https://x.com/robot_in_space2/status/2014096247309627541)
+
+## Safety
+
+New AI safety documentary will come to the cinemas in march. Here is the trailer:
+
+[https://www.youtube.com/watch?v=xkPbV3IRe4Y](https://www.youtube.com/watch?v=xkPbV3IRe4Y)
+
+In the past one safety concern was, that some dumb human gives their AI unfiltered access to the internet and somebody did just that (twitter).
+
+[https://x.com/AISafetyMemes/status/2024145895575499070](https://x.com/AISafetyMemes/status/2024145895575499070)
+
+Nice video example of deepfakes and that we should double check any content online. (twitter)
+
+[https://x.com/Spankoxx_/status/2024175353212612647](https://x.com/Spankoxx_/status/2024175353212612647)
+
+## Society
+
+Very good read about the 'moltbook' situation which points out that most of the interesting things (conciousness, trying to create secret channels, etc..) where done by humans posing as AIs and that the experiment was actually a fail and the AIs behaved boring. (twitter)
+
+[https://x.com/aakashgupta/status/2024368011105488991](https://x.com/aakashgupta/status/2024368011105488991)
+
+Big Time magazine article about various people that oppose the construction of datacenters in their area for different reasons.
+
+[https://time.com/7377579/ai-data-centers-people-movement-cover/?utm_source=twitter&utm_medium=social&utm_campaign=editorial&utm_content=190226](https://www.google.com/search?q=https://time.com/7377579/ai-data-centers-people-movement-cover/%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Deditorial%26utm_content%3D190226)
+
+## Learning
+
+Updated guide by Ethan Mollick which AIs to use for agentic tasks. (blog)
+
+[https://www.oneusefulthing.org/p/a-guide-to-which-ai-to-use-in-the?r=i5f7&utm_campaign=post&utm_medium=web&triedRedirect=true](https://www.oneusefulthing.org/p/a-guide-to-which-ai-to-use-in-the?r=i5f7&utm_campaign=post&utm_medium=web&triedRedirect=true)
+
+Repeating prompts at beginning and end of giving context improves the output sometimes dramatically because of how attention works. (arxiv)
+
+[https://arxiv.org/pdf/2512.14982](https://arxiv.org/pdf/2512.14982)
+
+A paper shows apparently that transformers were not superior to convultion when it cam e to images they were just tuned better and when similar techniques where applied to a convolutional architecture, it become as good while costing half the ressources. (arxiv)
+
+[https://arxiv.org/pdf/2201.03545](https://arxiv.org/pdf/2201.03545)
+
+Nature paper 'A roadmap for evaluating moral competence in large language models'
+
+[https://www.nature.com/articles/s41586-025-10021-1](https://www.nature.com/articles/s41586-025-10021-1)
