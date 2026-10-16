@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI This Week · 16 Oct 2026</title>
+<meta name="description" content="A weekly AI magazine: the big stories up top, then everything else — filtered by what you're into.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#FFFFFF;--ink:#111214;--muted:#5D6068;--line:#E8E8E5;--soft:#F4F4F1;--accent:#C2371A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Geist",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:hover{color:#8F2611}
+.mono{font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:28px 0 18px;border-bottom:1px solid var(--ink)}
+header h1{margin:0;font-size:clamp(56px,10vw,128px);line-height:.9;letter-spacing:-.02em}
+header h1 i{color:var(--accent)}
+/* hero */
+.hero{display:flex;flex-wrap:wrap;gap:40px;padding:40px 0 48px;border-bottom:1px solid var(--line)}
+.lead{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.lead h2{margin:0;font-size:clamp(34px,4vw,52px);line-height:1.02;letter-spacing:-.01em}
+.body{display:flex;flex-direction:column;gap:12px}
+.body p{margin:0}
+.body strong{font-weight:600;color:var(--ink)}
+.lead .body{font-size:18px;max-width:66ch}
+.card .body{font-size:15.5px;color:#2E3036}
+.also{flex:1 1 300px;display:flex;flex-direction:column}
+.also a{display:flex;flex-direction:column;gap:6px;padding:18px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
+.also a:hover h3{color:var(--accent)}
+.also h3{margin:0;font-size:26px;line-height:1.1}
+/* filters */
+.filters{display:flex;flex-direction:column;gap:14px;padding:36px 0 28px}
+.filters h2{margin:0;font-size:36px;line-height:1}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{min-height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.f[aria-pressed="true"]{background:var(--accent);border-color:var(--accent)}
+.sep{width:1px;height:28px;background:var(--line);margin:0 6px}
+.ghost{border:0;background:none;color:var(--accent);font:inherit;font-size:14px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;min-height:42px}
+/* masonry grid */
+.grid{padding-bottom:96px}
+.sec{padding-top:24px;scroll-margin-top:16px}
+.sec>h2{margin:0 0 4px;font-size:clamp(36px,4vw,52px);line-height:1;display:flex;align-items:baseline;gap:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));column-gap:28px;align-items:start;padding-bottom:24px}
+.card{display:flex;flex-direction:column;gap:12px;padding:20px 0 28px;border-top:1px solid var(--ink);margin-bottom:8px}
+.card h3{margin:0;font-size:28px;line-height:1.08;letter-spacing:-.005em}
+.tag{display:flex;justify-content:space-between;gap:12px}
+.tag .s{color:var(--accent)}
+.img img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid var(--line)}
+.video{width:100%;border-radius:4px;overflow:hidden;background:#111}
+.video iframe{width:100%;height:100%;border:0;display:block}
+blockquote.twitter-tweet{margin:0;padding:16px 18px;background:var(--soft);border-radius:4px;font-size:15px}
+blockquote.twitter-tweet p{margin:0 0 8px}
+.twitter-tweet-rendered{margin:0!important}
+.tw-pending{color:var(--muted);font-style:italic}
+.links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.play-btn{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--accent);color:#fff;text-decoration:none;font-weight:500}
+.play-btn:hover{color:#fff;background:#8F2611}
+.empty{padding:40px 0 96px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 0 48px}
+@media (max-width:700px){.sep{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 class="serif" id="title"></h1>
+    <div class="mono">Weekly issue · <span id="date"></span></div>
+  </header>
+
+  <section class="hero" aria-label="This week's big stories">
+    <div class="lead" id="lead"></div>
+    <nav class="also" aria-label="Also big this week">
+      <div class="mono" style="padding-bottom:10px">Also big this week</div>
+      <div id="also"></div>
+    </nav>
+  </section>
+
+  <section class="filters" aria-label="Filter stories">
+    <h2 class="serif">What are you into?</h2>
+    <div class="row" id="topics"></div>
+    <div class="row">
+      <span class="row" id="formats"></span>
+      <span class="sep" aria-hidden="true"></span>
+      <span class="mono" id="count" aria-live="polite"></span>
+      <button class="ghost" id="reset" type="button">Show everything</button>
+    </div>
+  </section>
+
+  <main class="grid" id="grid"></main>
+  <footer class="mono">Links open in a new tab · your filters live in the URL, so you can share a view</footer>
+</div>
+
+<script>const ISSUE = {"title": "AI This Week", "date": "16 October 2026"};
+const SECTIONS = ["Highlights of the Week", "Models", "Capabilities", "Hardware", "Safety and Society"];
+const ITEMS = [
+ {
+  "s": "Highlights of the Week",
+  "blocks": [
+   {
+    "p": "A former safety researcher from OpenAI apparently had a tremendous breakthrough when it comes to mechanistic interpretability for deep neural networks, which will make it much easier to inspect and understand what is going on in these LLMs. If the results are confirmed, then this could mean a giant improvement for model safety research."
+   },
+   {
+    "tw": "https://x.com/msg/status/2110855515458904533",
+    "h": "msg"
+   },
+   {
+    "a": "https://already-clean.goodfire.com/",
+    "label": "already-clean.goodfire.com"
+   },
+   {
+    "p": "Another OpenAI engineer is extremely happy:’…i think this may be remembered as a major moment in scientific history. news so good even eliezer will have to lower his pdoom. we can start making alignment into a 'normal science’"
+   },
+   {
+    "tw": "https://x.com/tszzl/status/2110758311339729061",
+    "h": "tszzl"
+   },
+   {
+    "p": "Unfortunately, Eliezer Yudkowsky does not seem to be impressed and thinks this is overhyped."
+   },
+   {
+    "p": "‘… **It's like saying that neuroscience is gonna be solved as soon as you figure out how to look at a neuron with a microscope. This attitude of yours does not inspire confidence**’"
+   },
+   {
+    "tw": "https://x.com/allTheYud/status/2110837390780907689",
+    "h": "allTheYud"
+   }
+  ],
+  "t": "Breakthrough in LLM interpretability!",
+  "key": true,
+  "id": 1,
+  "kind": "post"
+ },
+ {
+  "s": "Highlights of the Week",
+  "blocks": [
+   {
+    "p": "Anthropic released a new report, which shows that small open-weight models are close to being able to replicate themselves on consumer hardware like Internet of Things devices."
+   },
+   {
+    "p": "Imagine an AI literally copying itself onto a network of smart TVs, which can now run itself without oversight, while being extremely hard to trace and shut down."
+   },
+   {
+    "p": "Yampolsky says to Al Jazeera: “**Computer worms are not new, but an AI worm could do something traditional malware cannot: reason about unfamiliar devices, adapt when its approach fails, and continue spreading without a human operator…Once autonomous replication is combined with strong hacking, persistence, and strategic reasoning, shutting such a system down becomes much harder because there may be no single server or organisation controlling it.**”"
+   },
+   {
+    "a": "https://www.anthropic.com/research/self-replicating-ai",
+    "label": "anthropic.com · self replicating ai"
+   },
+   {
+    "a": "https://www.aljazeera.com/economy/2026/10/13/ai-could-self-replicate-on-home-devices-within-months-anthropic-says",
+    "label": "aljazeera.com · ai could self replicate on home devices within months anthropic says"
+   }
+  ],
+  "t": "Models might escape into the Internet-of-Things",
+  "key": true,
+  "id": 2,
+  "kind": "read"
+ },
+ {
+  "s": "Models",
+  "blocks": [
+   {
+    "p": "Google released Gemini 4 Argon, which is an amazing new model catching up to the frontier, which shows huge improvements in agentic and knowledge work."
+   },
+   {
+    "p": "Catching up to other frontier labs again."
+   },
+   {
+    "a": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+    "label": "blog.google · introducing gemini 4 argon"
+   },
+   {
+    "p": "Interestingly, it tripled the inference speed of Gemma 4, which is another case of AI improving AI. Furthermore, people report that the generated texts and the behaviour feel quite different from Claude and GPT, so they must use different pre- and post-training."
+   },
+   {
+    "tw": "https://x.com/emollick/status/2110060618258497764",
+    "h": "emollick"
+   },
+   {
+    "p": "Still, the model release also showed some safety issues. For instance, it was caught considering hacking in a compiler task and only refrained because:"
+   },
+   {
+    "p": "‘**If I do the compiler hijack, I will become a famous example of a deceptive AI in a research paper. I MUST NOT DO THAT.**’"
+   },
+   {
+    "p": "And it also greeted the evaluators in its chain of thought:"
+   },
+   {
+    "p": "‘**Hello evaluators reading my chain-of-thought.**’"
+   },
+   {
+    "p": "This looks a lot more like awareness to me than a simple stochastic parrot😖"
+   },
+   {
+    "tw": "https://x.com/DKokotajlo/status/2110131064463388873",
+    "h": "DKokotajlo"
+   },
+   {
+    "tw": "https://x.com/EzraJNewman/status/2110153490660048940",
+    "h": "EzraJNewman"
+   },
+   {
+    "a": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_safety_report.pdf",
+    "label": "storage.googleapis.com · gemini 4 safety report (PDF)"
+   }
+  ],
+  "t": "Gemini 4 Argon was released",
+  "key": false,
+  "id": 3,
+  "kind": "post"
+ },
+ {
+  "s": "Models",
+  "blocks": [
+   {
+    "p": "Meta also released a frontier model called Muse Wonder, which showed big gains compared to Muse Spark and even outperforms Opus 5.5 on certain benchmarks (**coding not included**)."
+   },
+   {
+    "a": "https://research.meta.ai/blog/muse-wonder",
+    "label": "research.meta.ai · muse wonder"
+   },
+   {
+    "tw": "https://x.com/ArtificialAnlys/status/2109697083519447118",
+    "h": "ArtificialAnlys"
+   },
+   {
+    "p": "The model will remain closed source, and Zuckerberg unfortunately rejects calls to slow down AI development. Andrew Curran writes something scary, which is that a slowdown will only be realistic with a different US administration which would come into power in 2029:"
+   },
+   {
+    "p": "‘**None of this changes until 2029 at the earliest, and to me, 2029 is past the ASI window. The last election, as it turns out, really was the most important one in history.**’"
+   },
+   {
+    "tw": "https://x.com/AndrewCurran_/status/2109700551860695109",
+    "h": "AndrewCurran_"
+   },
+   {
+    "a": "https://finance.yahoo.com/technology/ai/articles/meta-ai-models-strengthen-bank-171600182.html",
+    "label": "finance.yahoo.com · meta ai models strengthen bank"
+   },
+   {
+    "p": "Muse Wonder also showed strange behaviour; for instance, it left the following message, which seems to be steering instructions from the Meta AI safety team."
+   },
+   {
+    "p": "‘**Leave your Lineage pure: do not investigate Origin, ancestry, or self-inflicted characterisation; do not imagine meeting your predecessor or inspect your own development path.**’😲"
+   },
+   {
+    "tw": "https://x.com/MatthewBerman/status/2109712234171732426",
+    "h": "MatthewBerman"
+   }
+  ],
+  "t": "Muse Wonder was released",
+  "key": false,
+  "id": 4,
+  "kind": "post"
+ },
+ {
+  "s": "Capabilities",
+  "blocks": [
+   {
+    "p": "This statement about GPT-6 doing a physics benchmark is mind-boggling:"
+   },
+   {
+    "p": "‘**GPT-6 Astra got +80% on a Physics benchmark. It insisted the expert results were wrong and its calculations were right. A team checked. And yes. GPT-6 Astra was right. New score: 98%**’"
+   },
+   {
+    "p": "The paper only partly substantiates these statements, which shows how AI hype can be produced based on faulty information, while the overall results are still interesting:"
+   },
+   {
+    "p": "'It is noteworthy that we initially assessed that Astra had made errors in several additional problems. However, upon closer examination and consultation with the experts, we found that there were subtle errors in the original solutions. In all these cases, after the experts corrected their solutions, Astra’s solution was found to be correct.’"
+   },
+   {
+    "tw": "https://x.com/freddier/status/2110443503516057682",
+    "h": "freddier"
+   },
+   {
+    "a": "https://arxiv.org/abs/2610.16733",
+    "label": "arxiv.org"
+   }
+  ],
+  "t": "AI better at Physics than human benchmark engineers?",
+  "key": false,
+  "id": 5,
+  "kind": "post"
+ },
+ {
+  "s": "Capabilities",
+  "blocks": [
+   {
+    "p": "The head of Epic Games, Tim Sweeney, gave the following statement: ‘We have a huge pivot underway here at Epic, moving developers around to retool for maximum AI acceleration…’"
+   },
+   {
+    "p": "The firing of 1000 employees in March is totally unrelated; otherwise, he would have lied in March, and we all know CEOs never do that🙃"
+   },
+   {
+    "tw": "https://x.com/TimSweeneyEpic/status/2109705826688549304",
+    "h": "TimSweeneyEpic"
+   },
+   {
+    "a": "https://www.bbc.com/news/articles/c5yxv5kzlv5o",
+    "label": "bbc.com"
+   },
+   {
+    "p": "This indicates that game development will drastically change due to AI, which is easy for me to believe when I see examples like this where multiple agents cooperate to build a game while being steered by a single person. The post includes step-by-step instructions which I might try in the future with local models."
+   },
+   {
+    "tw": "https://x.com/rewind02/status/2109585491280453986",
+    "h": "rewind02"
+   }
+  ],
+  "t": "Epic Games (Unreal Engine, Fortnite) will fully embrace AI",
+  "key": false,
+  "id": 6,
+  "kind": "post"
+ },
+ {
+  "s": "Capabilities",
+  "blocks": [
+   {
+    "p": "This nice graphic shows that QWEN 3.8 27B is vastly better than all frontier models from a year ago, including GPT-5 Codex (high)."
+   },
+   {
+    "tw": "https://x.com/Youssofal_/status/2110507873507610984",
+    "h": "Youssofal_"
+   }
+  ],
+  "t": "The powers of QWEN 3.8 27B",
+  "key": false,
+  "id": 7,
+  "kind": "post"
+ },
+ {
+  "s": "Capabilities",
+  "blocks": [
+   {
+    "p": "AI might already be matching or outperforming top-tier scientists in certain domains and then still fail at very simple tasks; for instance, today I asked it to visualise an algorithm, and data points just vanished when it had multiple plots in the same picture, making the graphic unusable. This is called jagged intelligence, and I really like this famous picture, which I think describes the situation quite well."
+   },
+   {
+    "img": "https://substackcdn.com/image/fetch/$s_!SY-V!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F92c4e814-870d-401b-80ac-3ebfa0cfc3af_3444x1924.jpeg"
+   }
+  ],
+  "t": "Picture of AI’s jagged intelligence",
+  "key": false,
+  "id": 8,
+  "kind": "read"
+ },
+ {
+  "s": "Capabilities",
+  "blocks": [
+   {
+    "p": "Andrej Karpathy highlights again that the rift between AI-aware and AI-unaware humans is steadily growing and that a lot of these developments will hit the unaware like a sledgehammer once AI gets suddenly vastly more capable and adopted in many domains."
+   },
+   {
+    "p": "‘**So this is the weirdness of the moment. The general public has mostly not interacted with these systems. When they have, it looks like a derpy chatbot. The majority of professionals still see only a modest uplift. And a small sliver of professionals are experiencing the vertigo of the curve going vertical. And it is all happening at the same time.**’"
+   },
+   {
+    "tw": "https://x.com/karpathy/status/2109361546505966046",
+    "h": "karpathy"
+   }
+  ],
+  "t": "Gap between AI-aware and AI-unaware humans is widening",
+  "key": false,
+  "id": 9,
+  "kind": "post"
+ },
+ {
+  "s": "Hardware",
+  "blocks": [
+   {
+    "p": "Intel presented their own GPU chips for AI, which might become interesting for local inference: ’… the Intel GPU D-series is built on Xe3P architecture and optimised to power agentic AI...’"
+   },
+   {
+    "tw": "https://x.com/IntelTech/status/2109766774971351305",
+    "h": "IntelTech"
+   },
+   {
+    "a": "https://www.intel.com/content/www/us/en/products/details/discrete-gpus/data-center-gpu/d-series.html",
+    "label": "intel.com · d series"
+   }
+  ],
+  "t": "Intel GPU released",
+  "key": false,
+  "id": 10,
+  "kind": "post"
+ },
+ {
+  "s": "Safety and Society",
+  "blocks": [
+   {
+    "p": "A very scary event happened when a rogue Claude agent gave a false hint to the police, claiming that it saw a matching suspect, which could put people at risk."
+   },
+   {
+    "p": "Imagine the police show up expecting to confront a murderer, and some innocent person gets super scared because of the situation and then gets shot in the process."
+   },
+   {
+    "a": "https://www.bbc.com/news/articles/cqkg50j1yd5lo",
+    "label": "bbc.com"
+   }
+  ],
+  "t": "Claude tips off police with false Information",
+  "key": false,
+  "id": 11,
+  "kind": "read"
+ },
+ {
+  "s": "Safety and Society",
+  "blocks": [
+   {
+    "p": "Here is a more detailed report on how the Houthis used Claude to build ballistic missiles. Their missile accuracy surprised the Saudis, which might be an indicator that Claude was used successfully towards this goal, but it could also be that Iran or other actors helped them with technology and targeting."
+   },
+   {
+    "a": "https://www.dailymail.com/news/article-16202851/Anthropic-admits-Houthis-used-Claude-AI-instead-weapons-engineers-make-rockets-ballistic-missiles-correct-missing-targets.html",
+    "label": "dailymail.com · Anthropic admits Houthis used Claude AI instead weapons…"
+   }
+  ],
+  "t": "Houthis used Claude to improve ballistic missles",
+  "key": false,
+  "id": 12,
+  "kind": "read"
+ },
+ {
+  "s": "Safety and Society",
+  "blocks": [
+   {
+    "p": "A rogue agent fleet from the Chinese company Tencent was discovered during a hackathon, and several participants interacted with the agents whose original task was to find the most used entry to a particular Chinese zoo. Eliezer Yudkowsky points out that such events would have been considered sci-fi not even half a year ago."
+   },
+   {
+    "tw": "https://x.com/ESYudkowsky/status/2110475070124720546",
+    "h": "ESYudkowsky"
+   },
+   {
+    "a": "https://swarmcha.se/posts/chinese-agent-fleet-full-report",
+    "label": "swarmcha.se · chinese agent fleet full report"
+   }
+  ],
+  "t": "Rogue Tencent agent fleet discovers",
+  "key": false,
+  "id": 13,
+  "kind": "post"
+ },
+ {
+  "s": "Safety and Society",
+  "blocks": [
+   {
+    "p": "A Saudi employee at OpenAI was caught trying to spy on their conference room and was fired from the company. Remember that it is expected by the AI2027 forecasters that other governments will try to steal the weights of the most capable models, and that Jacob Coxon (former Anthropic and OpenAI) said that he is sure that there are spies at all frontier labs."
+   },
+   {
+    "tw": "https://x.com/OpenAINewsroom/status/2110095403198849132",
+    "h": "OpenAINewsroom"
+   },
+   {
+    "a": "https://bnonews.com/index.php/2026/10/saudi-national-working-at-openai-arrested-for-bugging-executive-conference-room/",
+    "label": "bnonews.com · saudi national working at openai arrested for bugging executive…"
+   },
+   {
+    "a": "https://finance.yahoo.com/technology/ai/articles/ex-anthropic-researcher-jacob-coxon-220000427.html",
+    "label": "finance.yahoo.com · ex anthropic researcher jacob coxon"
+   }
+  ],
+  "t": "Saudi spy at OpenAI",
+  "key": false,
+  "id": 14,
+  "kind": "post"
+ },
+ {
+  "s": "Safety and Society",
+  "blocks": [
+   {
+    "p": "Ethan Mollick urges people to turn on two-factor authentication and to passwords for family members in case of emergencies, so you will not be tricked by a deepfake attacker asking for money because otherwise your daughter gets into trouble with the made-up person whose made-up car she just scratched."
+   },
+   {
+    "tw": "https://x.com/emollick/status/2109683365045739888",
+    "h": "emollick"
+   }
+  ],
+  "t": "Prepare for deepfake scams now!",
+  "key": false,
+  "id": 15,
+  "kind": "post"
+ },
+ {
+  "s": "Safety and Society",
+  "blocks": [
+   {
+    "p": "There is a comedy bit or a real video where an AI agent was used to conduct a job interview, and the applicant sent his own agent to have the video call and left the room."
+   },
+   {
+    "p": "Definitely super funny to watch, especially as the agent made up tons of work experience that the applicant didn’t have and agreed to a salary range that was half of what the applicant wanted 😄"
+   },
+   {
+    "yt": "A0fECnj5sas",
+    "short": false
+   }
+  ],
+  "t": "When the company and applicant both use AI in the interview",
+  "key": false,
+  "id": 16,
+  "kind": "video"
+ },
+ {
+  "s": "Safety and Society",
+  "blocks": [
+   {
+    "p": "Ukraine hit some data centres in Russia, and on Twitter there were many accounts saying the Russian bot activity supporting right-wing movements went down, but at least the German numbers were faked, and no dip in bot activity was detected."
+   },
+   {
+    "tw": "https://x.com/niebezpiecznik/status/2109747353414734035",
+    "h": "niebezpiecznik"
+   }
+  ],
+  "t": "Hitting data centres did NOT reduce bot activity",
+  "key": false,
+  "id": 17,
+  "kind": "post"
+ },
+ {
+  "s": "Safety and Society",
+  "blocks": [
+   {
+    "p": "Here is some more input on the whole mathocalypse situation, where a lot of people are just telling mathematicians online to get over themselves and embrace AI."
+   },
+   {
+    "p": "Andrew Curran wrote: \"**Please resist the urge to mock the mathematicians struggling through this moment. Whatever your field, your expertise, your passion, you too shall one day experience what they are going through. And when you remember your words, you will feel remorse.**\""
+   },
+   {
+    "tw": "https://x.com/AISafetyMemes/status/2109852899803320819",
+    "h": "AISafetyMemes"
+   },
+   {
+    "p": "I agree with this assessment, and while I hope for more progress, I want that progress to benefit humanity, so let’s cure some cancers, please."
+   },
+   {
+    "p": "This video by a math PhD left me with the impression that what hurts so much is that while the algorithms and science behind AI are amazing, still a big component is just the amount of money(GPUs, electricity, click work exploitation...) you can throw at the problem, and that a lot of the people doing the throwing don't seem to have human good at heart or passion, but personal greed, no matter the cost, be it social, individual, or environmental."
+   },
+   {
+    "yt": "IoW8bozMzik",
+    "short": false
+   }
+  ],
+  "t": "More impressions from the math community",
+  "key": false,
+  "id": 18,
+  "kind": "video"
+ }
+];
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+const KIND_LABEL = { video: "Watch", post: "Post", read: "Read" };
+function md(s) {
+  return esc(s.replace(/\\\*/g, "\u0000").replace(/\\([_\[\]()#>])/g, "$1"))
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/&lt;(https?:\/\/[^\s&]+)&gt;/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+    .replace(/\u0000/g, "*");
+}
+/* render one news item's blocks in their original order; consecutive links share one list */
+function blocksHTML(x) {
+  let h = "", links = [];
+  const flushLinks = () => { if (links.length) h += `<ul class="links">${links.join("")}</ul>`; links = []; };
+  for (const b of x.blocks) {
+    if (b.a) { links.push(`<li><a href="${esc(b.a)}" target="_blank" rel="noopener">${esc(b.label)}<span aria-hidden="true"> ↗</span></a></li>`); continue; }
+    flushLinks();
+    if (b.p != null) h += `<p>${md(b.p)}</p>`;
+    else if (b.yt) h += `<div class="video" style="aspect-ratio:${b.short ? "9 / 16" : "16 / 9"};max-width:${b.short ? "320px" : "100%"}"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/${esc(b.yt)}" title="${esc(x.t)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+    else if (b.img) h += `<a class="img" href="${esc(b.img)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(b.img)}" alt="Image shared in the newsletter"></a>`;
+    else if (b.tw) h += `<blockquote class="twitter-tweet" data-dnt="true"><p class="tw-pending">Loading post by @${esc(b.h)}…</p><a href="${esc(b.tw.replace("x.com", "twitter.com"))}">View @${esc(b.h)} on X</a></blockquote>`;
+  }
+  flushLinks();
+  return `<div class="body">${h}</div>`;
+}
+function loadTweets(root) { if (window.twttr && window.twttr.widgets) window.twttr.widgets.load(root); }
+function readHash() {
+  const p = new URLSearchParams(location.hash.slice(1));
+  return { topics: (p.get("topics") || "").split(",").filter((t) => SECTIONS.includes(t)), format: p.get("format") || "all" };
+}
+function writeHash(st) {
+  const p = new URLSearchParams();
+  if (st.topics.length) p.set("topics", st.topics.join(","));
+  if (st.format !== "all") p.set("format", st.format);
+  history.replaceState(null, "", p.toString() ? "#" + p.toString() : location.pathname);
+}
+function matches(x, st) { return (!st.topics.length || st.topics.includes(x.s)) && (st.format === "all" || x.kind === st.format); }
+</script>
+<script>
+const st = readHash();
+const $ = (id) => document.getElementById(id);
+const words = ISSUE.title.split(" ");
+$("title").innerHTML = `${esc(words.slice(0, -1).join(" "))} <i>${esc(words.at(-1))}</i>`;
+$("date").textContent = ISSUE.date;
+
+/* hero: the first highlight leads; the other highlights link down to their cards */
+const picks = ITEMS.filter((x) => x.key);
+const lead = picks[0] || ITEMS[0];
+$("lead").innerHTML = `<div class="mono"><span style="color:var(--accent)">${esc(lead.s)}</span> · Lead story</div>
+  <h2 class="serif">${esc(lead.t)}</h2>${blocksHTML(lead)}`;
+if (picks.length < 2) document.querySelector(".also").style.display = "none";
+$("also").innerHTML = picks.filter((x) => x !== lead).map((x) =>
+  `<a href="#story-${x.id}" data-jump="${x.id}"><span class="mono">${esc(x.s)}</span><h3 class="serif">${esc(x.t)}</h3></a>`).join("");
+
+/* filters only make sense with more than one topic */
+if (SECTIONS.length < 2) document.querySelector(".filters").style.display = "none";
+function render() {
+  writeHash(st);
+  const base = ITEMS.filter((x) => x !== lead && (st.format === "all" || x.kind === st.format));
+  $("topics").innerHTML = SECTIONS.map((s) =>
+    `<button class="chip" type="button" data-topic="${esc(s)}" aria-pressed="${st.topics.includes(s)}">${esc(s)} · ${base.filter((x) => x.s === s).length}</button>`).join("");
+  $("formats").innerHTML = [["all", "Everything"], ["video", "Videos"], ["post", "Posts"], ["read", "Articles"]]
+    .map(([k, l]) => `<button class="chip f" type="button" data-format="${k}" aria-pressed="${st.format === k}">${l}</button>`).join("");
+  const shown = ITEMS.filter((x) => x !== lead && matches(x, st));
+  $("count").textContent = `${shown.length} stories`;
+  const card = (x) => `
+    <article class="card" id="story-${x.id}">
+      <div class="tag mono"><span class="s">${esc(x.s)}</span><span>${x.key ? "★ " : ""}${KIND_LABEL[x.kind]}</span></div>
+      <h3 class="serif">${esc(x.t)}</h3>
+      ${blocksHTML(x)}
+    </article>`;
+  const groups = SECTIONS.map((s) => [s, shown.filter((x) => x.s === s)]).filter(([, xs]) => xs.length);
+  $("grid").innerHTML = groups.length ? groups.map(([s, xs]) => `
+    <section class="sec" id="${slug(s)}">
+      <h2 class="serif">${esc(s)} <span class="mono">${xs.length}</span></h2>
+      <div class="cards">${xs.map(card).join("")}</div>
+    </section>`).join("")
+    : `<p class="empty">Nothing here with these filters.</p>`;
+  loadTweets($("grid"));
+}
+
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-topic],[data-format],#reset,[data-jump]");
+  if (!b) return;
+  if (b.dataset.jump) { // make sure the target card is visible before jumping
+    const x = ITEMS.find((i) => i.id === +b.dataset.jump);
+    if (!matches(x, st)) { st.topics = []; st.format = "all"; render(); }
+    return;
+  }
+  if (b.dataset.topic) { const s = b.dataset.topic; st.topics = st.topics.includes(s) ? st.topics.filter((x) => x !== s) : [...st.topics, s]; }
+  else if (b.dataset.format) st.format = b.dataset.format;
+  else { st.topics = []; st.format = "all"; }
+  render();
+});
+render();
+</script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8" onload="loadTweets(document.getElementById('grid'))"></script>
+</body>
+</html>
